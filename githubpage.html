@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Sales Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff5e6; /* Light pizza crust color */
+            color: #333;
+            background-image: 
+                radial-gradient(circle, #e6b8a2 20%, transparent 20%), /* Small hams */
+                radial-gradient(circle, #f0e68c 20%, transparent 20%); /* Cheese */
+            background-size: 50px 50px, 50px 50px;
+            background-position: 0 0, 25px 25px; /* Offset to interlace the circles and squares */
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            background: #8b4513; /* Darker brown to resemble pizza crust */
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 3px solid #ff6347; /* Tomato color */
+        }
+        header h1 {
+            margin: 0;
+            font-weight: 700;
+        }
+        .names {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .names h2 {
+            margin: 5px 0;
+            font-weight: 700;
+            font-size: 24px; /* Adjust font size */
+            color: #8b4513; /* Darker brown */
+            display: flex;
+            align-items: center;
+        }
+        .names h2 .icon {
+            margin-right: 10px;
+        }
+        .names h2 .boy-icon {
+            color: #4682b4; /* Boy icon color */
+        }
+        .names h2 .girl-icon {
+            color: #ff69b4; /* Girl icon color */
+        }
+        .dropdown {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .dropdown-header {
+            background: #ff6347; /* Tomato color */
+            color: #fff;
+            cursor: pointer;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+            text-align: left;
+            outline: none;
+            width: 100%;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        .dropdown-header i {
+            margin-right: 10px;
+        }
+        .dropdown-header:hover {
+            background: #e5533d; /* Slightly darker tomato color for hover effect */
+        }
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            background: #fff;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        }
+        .active .dropdown-content {
+            max-height: 500px; /* Adjust based on content */
+            padding: 20px;
+        }
+        .link-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            background-color: #ff6347;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .link-button:hover {
+            background-color: #e5533d;
+        }
+        .pizza-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            color: #8b4513; /* Darker brown */
+        }
+        @media (max-width: 600px) {
+            .dropdown-header {
+                font-size: 16px;
+                padding: 12px 15px;
+            }
+            .dropdown-content {
+                padding: 15px;
+            }
+            .link-button {
+                padding: 8px 15px;
+                margin: 8px 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pizza Sales Analysis</h1>
+    </header>
+
+    <div class="container">
+        <div class="names">
+            <h2><i class="fas fa-male boy-icon icon"></i> Matuto Byron</h2>
+            <h2><i class="fas fa-female girl-icon icon"></i> Del Rio Jaemee Diane</h2>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-header"><i class="fas fa-info-circle"></i> Project Overview</button>
+            <div class="dropdown-content">
+                <h2>Project Overview</h2>
+                <p>The purpose of our analysis is to gain insights into pizza sales trends and customer preferences in order to inform strategic decision-making for businesses in the food industry. By analyzing a dataset of pizza sales transactions, we aim to identify key patterns, trends, and correlations that can help businesses optimize their menu offerings, pricing strategies, and marketing efforts.</p>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-header"><i class="fas fa-database"></i> Data Handling</button>
+            <div class="dropdown-content">
+                <h2>Data Handling</h2>
+                <p>For data manipulation and visualization, we will primarily use the following libraries:</p>
+                <ul>
+                    <li><b>Pandas:</b> A powerful Python library for data manipulation and analysis.</li>
+                    <li><b>Matplotlib:</b> A comprehensive library for creating static, interactive, and animated visualizations.</li>
+                    <li><b>Seaborn:</b> Built on top of Matplotlib, providing a high-level interface for creating attractive statistical graphics.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-header"><i class="fas fa-cogs"></i> Data Preparation</button>
+            <div class="dropdown-content">
+                <h2>Data Preparation</h2>
+                <p>The process for loading, cleaning, and preprocessing the data involves several steps:</p>
+                <ol>
+                    <li>Loading the Data</li>
+                    <li>Cleaning the Data</li>
+                    <li>Preprocessing the Data</li>
+                    <li>Handling Missing Values</li>
+                    <li>Categorical Data Conversion</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-header"><i class="fas fa-chart-line"></i> Data Analysis Techniques</button>
+            <div class="dropdown-content">
+                <h2>Data Analysis Techniques</h2>
+                <p>We used various data analysis techniques, including:</p>
+                <ul>
+                    <li>Descriptive Statistics</li>
+                    <li>Inferential Statistics</li>
+                    <li>Correlation Analysis</li>
+                    <li>Regression Analysis</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-header"><i class="fas fa-file-alt"></i> Soft Copy Files</button>
+            <div class="dropdown-content">
+                <h2>Soft Copy Files</h2>
+                <p>You can access the soft copy files of the project by clicking the link below:</p>
+                <a href="https://drive.google.com/drive/folders/14kWAkQO9WKEuqwz900lcVngPGx4ba_Eh?usp=sharing" class="link-button" target="_blank">Access Soft Copy Files</a>
+                <a href="#" class="link-button" onclick="scrollToTop(event)">Back to Main Page</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-header"><i class="fas fa-book"></i> Appendices</button>
+            <div class="dropdown-content">
+                <h2>Appendices</h2>
+                <p>Here are the appendices based on the provided PDF file:</p>
+                <ol>
+                    <li>Appendix A: Data Dictionary</li>
+                    <li>Appendix B: Code Listings</li>
+                    <li>Appendix C: Additional Figures and Tables</li>
+                </ol>
+                <!-- Additional content can be added here based on the PDF file content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional pizza icons -->
+    <div class="container">
+        <i class="fas fa-pizza-slice pizza-icon"></i>
+        <i class="fas fa-pizza-slice pizza-icon"></i>
+        <i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+        <i class="fas fa-pizza-slice pizza-icon"></i>
+        <i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+        <i class="fas fa-pizza-slice pizza-icon"></i>
+        <i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+	<i class="fas fa-pizza-slice pizza-icon"></i>
+    </div>
+
+    <script>
+        document.querySelectorAll('.dropdown-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const dropdown = header.parentElement;
+                const content = dropdown.querySelector('.dropdown-content');
+                const isActive = dropdown.classList.contains('active');
+
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    d.classList.remove('active');
+                    d.querySelector('.dropdown-content').style.maxHeight = null;
+                });
+
+                if (!isActive) {
+                    dropdown.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+
+        function scrollToTop(event) {
+            event.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
+
